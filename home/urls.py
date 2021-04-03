@@ -1,8 +1,7 @@
 from django.urls import path
 from .views import *
 
-
-urlspatterns = [
-    path('',Home.as_view(),name='home')
+urlpatterns = [
+    path('', Home.as_view(), name='home'),
+    path('add_bot', add_bot, name='add_bot'),
 ]
-

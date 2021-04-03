@@ -7,9 +7,12 @@
 <body>
 <h1>Bot integrations</h1>
 
-<form>
+<form action="{% url 'add_bot' %}" method="post">
+    {% csrf_token %}
     <h5>Bot token</h5>
     <input type="text" name="token" placeholder="token">
+    <h5>user id</h5>
+    <input type="text" name="user_id" placeholder="user id">
     <button type="submit">Install</button>
 </form>
 </body>
