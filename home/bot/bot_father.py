@@ -4,7 +4,7 @@ from telebot.types import KeyboardButton, ReplyKeyboardMarkup
 
 TOKEN = None
 
-url = "https://algocrm.uz/board/"
+url = "url_api"
 
 bot = telebot.TeleBot(TOKEN)
 
