@@ -8,9 +8,9 @@ class Home(TemplateView):
 
 def add_bot(request):
     token = request.POST.get('token')
-    user_id = request.POST.get('user_id')
+    user_id = request.user.id
     bot_path = str(settings.BASE_DIR)+'/home/bot/bot_father.py'
-    bot_new = str(settings.BASE_DIR)+'/home/bot/bot_{}.py'.format(user_id)
+    bot_new = '/bot/bots/bot_{}.py'.format(user_id)
     bot_conf = str(settings.BASE_DIR)+"/home/conf/bot_conf.conf"
     bot_conf_new = "/etc/supervisor/conf.d/bot_conf_{}.conf".format(user_id)
 
@@ -22,7 +22,7 @@ def add_bot(request):
 
     with open(bot_conf) as f:
         newText = f.read().replace('[program:bot]', '[program:bot_{}]'.format(user_id))
-        newText = newText.replace('command=/bot_integrations/venv/bin/python /bot_integrations/home/bot_father.py', 'command=/bot_integrations/venv/bin/python /bot_integrations/home/bot/bot_{}.py'.format(user_id))
+        newText = newText.replace('command=/bot/venv/bin/python /bot/bots/bot_father.py', 'command=/bot/venv/bin/python /bot/bots/bot_{}.py'.format(user_id))
 
     with open(bot_conf_new, "w") as f:
         f.write(newText)
